@@ -1,27 +1,35 @@
 namespace :scrape do
   desc "Scrape IMDb Movies Coming Soon and output CSV"
   task movies: :environment do
-    page = HTTParty.get('http://www.imdb.com/movies-coming-soon/')
-    parse_page = Nokogiri::HTML(page)
+    url = "http://www.imdb.com/movies-coming-soon/"
+    page = HTTParty.get(url)
+    doc = Nokogiri::HTML(page)
 
-    csv = CSV.open("movie.csv", "wb")
+    list_of_movies = []
 
-    parse_page.css("tbody").each do |movie|
-      title = movie.css(".overview-top h4 a").text
-      director = movie.css(".outline+ .txt-block a").text
-      genres = movie.css(".cert-runtime-genre span").text
-      duration = movie.css("time").text
-      description = movie.css(".overview-top .outline").text
+    doc.css("tbody").each do |movie|
+      movie_hash = {}
+
+      movie_hash[:title] = movie.css(".overview-top h4 a").text
+      puts "Movie: #{movie_hash[:title]}"
+
+      movie_hash[:director] = movie.css(".outline+ .txt-block a").text
+      puts "Director: #{movie_hash[:director]}"
+
+      movie_hash[:genres] = movie.css(".cert-runtime-genre span").text
+      puts "Genres: #{movie_hash[:genres]}"
+
+      movie_hash[:duration] = movie.css("time").text
+      puts "Duration: #{movie_hash[:duration]}"
+
+      movie_hash[:description] = movie.css(".overview-top .outline").text
+      puts "Description: #{movie_hash[:description]}"
 
       puts "************************************************"
-      puts "Movie:  #{title}"
-      puts " Director: #{director}"
-      puts " Genres: #{genres}"
-      puts " Duration: #{duration}"
-      puts"  Description: #{description}"
 
-      csv << [title, director, genres, duration, description]
-
+      list_of_movies << movie_hash
     end
+
+    ap list_of_movies
   end
 end
