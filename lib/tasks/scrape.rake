@@ -1,6 +1,3 @@
-require Rails.root.join("lib", "core_extensions", "array", "to_csv.rb")
-Array.include CoreExtensions::Array::ToCSV
-
 namespace :scrape do
   desc "Scrape IMDb Movies Coming Soon and output CSV"
   task movies: :environment do
@@ -39,6 +36,6 @@ namespace :scrape do
 
     ap list_of_movies
 
-    list_of_movies.to_csv_file("coming_soon.csv")
+    list_of_movies.to_csv("coming_soon.csv")
   end
 end

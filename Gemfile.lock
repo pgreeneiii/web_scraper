@@ -41,6 +41,7 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
+    array_to_csv (0.1.0)
     autoprefixer-rails (6.7.7.1)
       execjs
     awesome_print (1.7.0)
@@ -222,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  array_to_csv
   awesome_print
   better_errors
   binding_of_caller
