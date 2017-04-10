@@ -35,5 +35,7 @@ namespace :scrape do
     end
 
     ap list_of_movies
+
+    list_of_movies.to_csv("coming_soon.csv")
   end
 end
