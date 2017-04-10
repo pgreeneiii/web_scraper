@@ -1,12 +1,6 @@
 namespace :scrape do
   desc "Scrape IMDb Movies Coming Soon and output CSV"
   task movies: :environment do
-    require 'HTTParty'
-    require 'Nokogiri'
-    require 'JSON'
-    require 'Pry'
-    require 'csv'
-
     page = HTTParty.get('http://www.imdb.com/movies-coming-soon/')
     parse_page = Nokogiri::HTML(page)
 
