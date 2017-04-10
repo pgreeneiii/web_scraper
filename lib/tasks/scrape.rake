@@ -34,7 +34,7 @@ namespace :scrape do
 
       puts "************************************************"
 
-      list_of_movies << movie_hash
+      list_of_movies.push(movie_hash)
     end
 
     ap list_of_movies
