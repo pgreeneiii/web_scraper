@@ -1,2 +1,40 @@
 <h1>AaplQuestions#one</h1>
 <p>Find me in app/views/aapl_questions/one.html.erb</p>
+
+<dl>
+  <dt>
+    Total quotes
+  </dt>
+  <dd>
+    <%= @total_quotes %>
+  </dd>
+
+  <dt>
+    Closed higher than open
+  </dt>
+  <dd>
+    <%= @closed_higher_than_open %> (<%= number_to_percentage(100* @closed_higher_than_open.to_f / @total_quotes) %>)
+  </dd>
+
+  <dt>
+    Closed lower than open
+  </dt>
+  <dd>
+    <%= @closed_lower_than_open %> (<%= number_to_percentage(100* @closed_lower_than_open.to_f / @total_quotes) %>)
+  </dd>
+
+  <dt>
+    Declined
+  </dt>
+  <dd>
+    <%= @declined %> (<%= number_to_percentage(100* @declined.to_f / @total_quotes) %>)
+  </dd>
+
+  <dt>
+    Increased
+  </dt>
+  <dd>
+    <%= @increased %> (<%= number_to_percentage(100* @increased.to_f / @total_quotes) %>)
+  </dd>
+
+</dl>
