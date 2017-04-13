@@ -11,10 +11,10 @@ namespace :solutions do
 
     list_of_movies = []
 
-    doc.css("tbody").each do |movie|
+    doc.css(".overview-top").each do |movie|
       movie_hash = {}
 
-      movie_hash[:title] = movie.css(".overview-top h4 a").text.strip
+      movie_hash[:title] = movie.css("h4 a").text.strip
       puts "Movie: #{movie_hash[:title]}"
 
       movie_hash[:director] = movie.css(".outline+ .txt-block a").text.strip
@@ -26,7 +26,7 @@ namespace :solutions do
       movie_hash[:duration] = movie.css("time").text.strip
       puts "Duration: #{movie_hash[:duration]}"
 
-      movie_hash[:description] = movie.css(".overview-top .outline").text.strip
+      movie_hash[:description] = movie.css(".outline").text.strip
       puts "Description: #{movie_hash[:description]}"
 
       puts "************************************************"
